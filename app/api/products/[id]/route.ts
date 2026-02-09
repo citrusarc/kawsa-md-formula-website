@@ -3,7 +3,7 @@ import { sql } from "@/utils/neon/client";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -92,7 +92,7 @@ export async function GET(
     console.error("Error fetching product:", error);
     return NextResponse.json(
       { error: "Failed to fetch product" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -82,11 +82,11 @@ export async function getProducts(): Promise<ProductsItem[]> {
                 unitPrice: option.unitPrice,
                 originalPrice: option.originalPrice,
                 currentPrice: option.currentPrice,
-              })
+              }),
             ),
-          })
+          }),
         ),
-      })
+      }),
     );
 
     return transformedData;
@@ -95,7 +95,7 @@ export async function getProducts(): Promise<ProductsItem[]> {
     throw new Error(
       `Failed to fetch products: ${
         error instanceof Error ? error.message : "Unknown error"
-      }`
+      }`,
     );
   }
 }
