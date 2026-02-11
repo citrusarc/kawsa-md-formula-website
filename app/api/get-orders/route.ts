@@ -16,15 +16,17 @@ export async function GET(req: NextRequest) {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/get-orders?orderNumber=${orderNumber}`,
     );
 
-    const data = await response.json();
-
     if (!response.ok) {
       return NextResponse.json({ error: "Order not found" }, { status: 404 });
     }
 
+    const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
     console.error("Error fetching order:", error);
-    return NextResponse.json({ error: "Order not found" }, { status: 404 });
+    return NextResponse.json(
+      { error: "Failed to fetch order" },
+      { status: 500 },
+    );
   }
 }

@@ -29,12 +29,19 @@ export default function OrderSuccessPage() {
         const response = await fetch(
           `/api/get-orders?orderNumber=${orderNumber}`,
         );
+
         if (!response.ok) {
           console.error("Order fetch failed:", response.status);
+          if (response.status === 404) {
+            if (intervalRef.current) clearInterval(intervalRef.current);
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+          }
           return;
         }
+
         const data = await response.json();
         setOrder(data);
+
         if (data.awbNumber && intervalRef.current) {
           clearInterval(intervalRef.current);
           intervalRef.current = null;
