@@ -31,7 +31,6 @@ export default function OrderSuccessPage() {
         );
 
         if (!response.ok) {
-          console.error("Order fetch failed:", response.status);
           if (response.status === 404) {
             if (intervalRef.current) clearInterval(intervalRef.current);
             if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -42,9 +41,14 @@ export default function OrderSuccessPage() {
         const data = await response.json();
         setOrder(data);
 
-        if (data.awbNumber && intervalRef.current) {
-          clearInterval(intervalRef.current);
-          intervalRef.current = null;
+        const doneStatuses = [
+          "payment_confirmed",
+          "easyparcel_order_created",
+          "awb_generated",
+          "email_sent",
+        ];
+        if (doneStatuses.includes(data.orderWorkflowStatus) || data.awbNumber) {
+          if (intervalRef.current) clearInterval(intervalRef.current);
           if (timeoutRef.current) clearTimeout(timeoutRef.current);
         }
       } catch (err) {
@@ -55,11 +59,12 @@ export default function OrderSuccessPage() {
     };
 
     fetchOrder();
+
     intervalRef.current = window.setInterval(fetchOrder, 5000);
     timeoutRef.current = window.setTimeout(() => {
       if (intervalRef.current) clearInterval(intervalRef.current);
       intervalRef.current = null;
-    }, 60_000);
+    }, 30_000);
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
