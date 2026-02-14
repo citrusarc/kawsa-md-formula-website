@@ -297,7 +297,7 @@ export default function ProductDetailsPage({ params }: ProductDetailsProps) {
                     quantity: quantity,
                   });
                   setSuccessMessage("Added to cart");
-                } catch (error) {
+                } catch {
                   const errorMessage =
                     "An error occurred while adding products to cart.";
                   setError(errorMessage);

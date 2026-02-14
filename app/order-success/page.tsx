@@ -51,7 +51,7 @@ export default function OrderSuccessPage() {
           if (intervalRef.current) clearInterval(intervalRef.current);
           if (timeoutRef.current) clearTimeout(timeoutRef.current);
         }
-      } catch (err) {
+      } catch {
       } finally {
         setLoading(false);
       }

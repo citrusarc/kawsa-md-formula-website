@@ -244,7 +244,7 @@ function CheckoutPageContent() {
         setShippingFee(
           parseFloat(Number(cheapestRate.shipmentTotalRates).toFixed(2)),
         );
-      } catch (err) {
+      } catch {
         setShippingError(
           "Unable to calculate shipping. Please check your address.",
         );
