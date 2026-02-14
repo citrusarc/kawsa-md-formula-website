@@ -245,7 +245,6 @@ function CheckoutPageContent() {
           parseFloat(Number(cheapestRate.shipmentTotalRates).toFixed(2)),
         );
       } catch (err) {
-        console.error("EasyParcel rate check error:", err);
         setShippingError(
           "Unable to calculate shipping. Please check your address.",
         );
@@ -346,7 +345,6 @@ function CheckoutPageContent() {
         data = await response.json();
       } catch {
         const text = await response.text();
-        console.error("Non-JSON response:", text);
         throw new Error("Server error. Please try again.");
       }
 
@@ -362,7 +360,6 @@ function CheckoutPageContent() {
       window.location.href = data.checkout_url;
       form.reset();
     } catch (error: unknown) {
-      console.error("Checkout failed:", error);
       const errorMsg =
         error instanceof Error ? error.message : "An error occurred";
       setErrorMessage(errorMsg);

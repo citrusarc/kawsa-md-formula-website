@@ -45,7 +45,6 @@ export async function getProducts(): Promise<ProductsItem[]> {
     `;
 
     if (!data || data.length === 0) {
-      console.warn("No data returned from products query");
       return [];
     }
 
@@ -91,7 +90,6 @@ export async function getProducts(): Promise<ProductsItem[]> {
 
     return transformedData;
   } catch (error) {
-    console.error("Error fetching products:", error);
     throw new Error(
       `Failed to fetch products: ${
         error instanceof Error ? error.message : "Unknown error"

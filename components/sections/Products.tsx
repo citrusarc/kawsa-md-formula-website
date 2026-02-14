@@ -25,7 +25,6 @@ export default function ProductsSection() {
         )
       )
       .catch((error) => {
-        console.error("Error fetching products:", error);
       });
   }, []);
 

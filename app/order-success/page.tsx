@@ -52,7 +52,6 @@ export default function OrderSuccessPage() {
           if (timeoutRef.current) clearTimeout(timeoutRef.current);
         }
       } catch (err) {
-        console.error("Failed to fetch order:", err);
       } finally {
         setLoading(false);
       }

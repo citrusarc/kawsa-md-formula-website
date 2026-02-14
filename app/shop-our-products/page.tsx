@@ -17,13 +17,11 @@ export default function ShopOurProductsPage() {
         setProducts(
           (data.products || []).filter(
             (item: ProductsItem) =>
-              !item.status?.isHidden && !item.status?.isDisabled
-          )
-        )
+              !item.status?.isHidden && !item.status?.isDisabled,
+          ),
+        ),
       )
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
+      .catch((error) => {});
   }, []);
 
   return (
@@ -72,7 +70,7 @@ export default function ShopOurProductsPage() {
                   <span className="line-through text-neutral-400 mr-2">
                     {item.currency}
                     {(item.variants[0].options[0].originalPrice ?? 0).toFixed(
-                      2
+                      2,
                     )}
                   </span>
                   <span className="text-red-500 font-semibold">
@@ -88,7 +86,7 @@ export default function ShopOurProductsPage() {
                 <>
                   {item.currency}
                   {(item.variants?.[0]?.options?.[0]?.unitPrice ?? 0).toFixed(
-                    2
+                    2,
                   )}
                 </>
               )}

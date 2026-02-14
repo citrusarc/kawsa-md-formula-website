@@ -146,7 +146,6 @@ export default function ProductDetailsPage({ params }: ProductDetailsProps) {
             ? error.message
             : "An error occurred while fetching products.";
         setError(errorMessage);
-        console.error("Fetch error:", error);
       } finally {
         setLoading(false);
       }
@@ -302,7 +301,6 @@ export default function ProductDetailsPage({ params }: ProductDetailsProps) {
                   const errorMessage =
                     "An error occurred while adding products to cart.";
                   setError(errorMessage);
-                  console.error("Fetch error:", error);
                 }
               }}
               className="p-4 w-full rounded-lg overflow-hidden cursor-pointer border text-violet-600 bg-white border-violet-600 hover:text-white hover:bg-violet-600 hover:border-white"
