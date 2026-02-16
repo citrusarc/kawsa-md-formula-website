@@ -4,7 +4,7 @@ import { Minus, Plus } from "iconoir-react";
 
 import { Button } from "@/components/ui/button";
 import { StepperProps } from "@/types";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils";
 
 export function Stepper({ value, onChange, min = 1, max }: StepperProps) {
   const isMin = value <= min;
